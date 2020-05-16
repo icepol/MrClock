@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
     
     private bool _quit;
@@ -21,7 +22,11 @@ public class MenuManager : MonoBehaviour
         EventManager.TriggerEvent(Events.TRANSITION_OPEN);
         
         # if UNITY_WEBGL
-            quitButton.gameObject.SetActive(false);        
+            quitButton.gameObject.SetActive(false);
+        
+            Vector2 position = playButton.transform.position;
+            position.y -= 100;
+            playButton.transform.position = position;
         #endif
     }
 
