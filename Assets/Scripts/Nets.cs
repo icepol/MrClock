@@ -14,6 +14,7 @@ public class Nets : MonoBehaviour
     void Start()
     {
         EventManager.AddListener(Events.NET_REPAIRED, OnNetRepaired);
+        EventManager.AddListener(Events.TOOL_COLLECTED, OnToolCollected);
 
         nets = GetComponentsInChildren<Net>();
 
@@ -23,6 +24,7 @@ public class Nets : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.RemoveListener(Events.NET_REPAIRED, OnNetRepaired);
+        EventManager.RemoveListener(Events.TOOL_COLLECTED, OnToolCollected);
     }
 
     IEnumerator DelayedBroken()
@@ -32,6 +34,15 @@ public class Nets : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(minBrokeDelay, maxBrokeDelay));
             
             net.Broke();
+        }
+    }
+
+    void OnToolCollected()
+    {
+        foreach (Net net in nets)
+        {
+            if (net.IsBroken)
+                net.Repair();
         }
     }
 

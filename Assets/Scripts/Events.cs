@@ -17,6 +17,9 @@ public class Events
     public const string NET_BROKEN = "NetBroken";
     public const string NET_REPAIRED = "NetRepaired";
 
+    public const string TOOL_SPAWNED = "ToolSpawned";
+    public const string TOOL_COLLECTED = "ToolCollected";
+
     public const string TRANSITION_OPEN = "TransitionOpen";
     public const string TRANSITION_CLOSE = "TransitionClose";
     public const string TRANSITION_OPEN_FINISHED = "TransitionOpenFinished";

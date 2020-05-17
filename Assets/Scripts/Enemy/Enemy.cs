@@ -146,7 +146,10 @@ public class Enemy : MonoBehaviour, IDamage
         if (Vector2.Distance(transform.position, _targetPosition) < 0.1f)
         {
             // we are on the target position, pick new one
-            _targetPosition = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+            _targetPosition = new Vector2(
+                Random.Range(GameState.MinX, GameState.MaxX), 
+                Random.Range(GameState.MinY, GameState.MaxY)
+                );
         }
     }
 

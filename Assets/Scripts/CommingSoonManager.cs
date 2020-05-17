@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CommingSoonManager : MonoBehaviour
 {
-    [SerializeField] private Text tryAgain;
+    [SerializeField] private Text score;
     
     private void Awake()
     {
@@ -14,6 +14,8 @@ public class CommingSoonManager : MonoBehaviour
     void Start()
     {
         EventManager.TriggerEvent(Events.TRANSITION_OPEN);
+
+        score.text = GameState.Score.ToString();
     }
 
     private void OnDestroy()

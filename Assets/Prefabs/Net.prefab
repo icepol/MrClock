@@ -119,6 +119,8 @@ MonoBehaviour:
   explosionPrefab: {fileID: 1479038603773136112, guid: 6fcd848b8ab49444e89ce31d0ec6c926,
     type: 3}
   fireParticle: {fileID: 6802342291167633383}
+  netRepaired: {fileID: 1638532092587942942, guid: 9dd6390c236284065bc9f5d5061d25be,
+    type: 3}
 --- !u!1001 &5250064701863361529
 PrefabInstance:
   m_ObjectHideFlags: 0

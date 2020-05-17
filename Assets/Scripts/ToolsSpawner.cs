@@ -1,15 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class ToolsSpawner : MonoBehaviour
 {
-    [SerializeField] private float initialDelay = 1f;
-    [SerializeField] private float minDelay = 3f;
-    [SerializeField] private float maxDelay = 5f;
-    [SerializeField] private int maxEnemies = 2;
-
-    [SerializeField] private Enemy[] enemiesPrefabs;
+    [SerializeField] private float minDelay = 2;
+    [SerializeField] private float maxDelay = 4;
+    
+    [SerializeField] private Tool[] toolsPrefabs;
     
     [SerializeField] private float overflow = 0f;
     
@@ -21,12 +18,24 @@ public class EnemySpawner : MonoBehaviour
 
     private bool _isSpawning;
     
+    private int _toolsRequired = 0;
+    private int _toolsSpawned = 0;
+    private int _toolsCollected = 0;
+    
     private void Awake()
     {
         EventManager.AddListener(Events.BOUNDARIES_BOTTOM_LEFT, OnBoundariesBottomLeft);
         EventManager.AddListener(Events.BOUNDARIES_TOP_RIGHT, OnBoundariesTopRight);
         EventManager.AddListener(Events.NET_BROKEN, OnNetDestroyed);
+        EventManager.AddListener(Events.TOOL_SPAWNED, OnToolSpawned);
+        EventManager.AddListener(Events.TOOL_COLLECTED, OnToolCollected);
         EventManager.AddListener(Events.LEVEL_FINISHED, OnLevelFinished);
+    }
+
+    private void Start()
+    {
+        _isSpawning = true;
+        StartCoroutine(StartSpawning());
     }
 
     private void OnDestroy()
@@ -34,6 +43,8 @@ public class EnemySpawner : MonoBehaviour
         EventManager.RemoveListener(Events.BOUNDARIES_BOTTOM_LEFT, OnBoundariesBottomLeft);
         EventManager.RemoveListener(Events.BOUNDARIES_TOP_RIGHT, OnBoundariesTopRight);
         EventManager.RemoveListener(Events.NET_BROKEN, OnNetDestroyed);
+        EventManager.RemoveListener(Events.TOOL_SPAWNED, OnToolSpawned);
+        EventManager.RemoveListener(Events.TOOL_COLLECTED, OnToolCollected);
         EventManager.RemoveListener(Events.LEVEL_FINISHED, OnLevelFinished);
     }
     
@@ -51,13 +62,19 @@ public class EnemySpawner : MonoBehaviour
 
     void OnNetDestroyed()
     {
-        if (!_isSpawning)
-        {
-            _isSpawning = true;
-            StartCoroutine(StartSpawning());
-        }
+        _toolsRequired++;
     }
 
+    void OnToolSpawned()
+    {
+        _toolsSpawned++;
+    }
+
+    void OnToolCollected()
+    {
+        _toolsCollected++;
+    }
+    
     void OnLevelFinished()
     {
         _isSpawning = false;
@@ -65,27 +82,25 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator StartSpawning()
     {
-        yield return new WaitForSeconds(initialDelay);
-
         while (_isSpawning)
         {
-            if (!LimitOfEnemiesReached())
-                SpawnEnemy();
+            yield return new WaitForSeconds(1f);
+
+            if (_toolsSpawned >= _toolsRequired || _toolsCollected < _toolsSpawned)
+                // we didn't need more tools now
+                continue;
             
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
+
+            SpawnTool();
         }
     }
-
-    bool LimitOfEnemiesReached()
-    {
-        return GetComponentsInChildren<Enemy>().Length >= maxEnemies;
-    }
-
-    void SpawnEnemy()
+    
+    void SpawnTool()
     {
         Vector2 position = new Vector2(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax));
-        Enemy enemy = Instantiate(
-            enemiesPrefabs[Random.Range(0, enemiesPrefabs.Length)],
+        Tool tool = Instantiate(
+            toolsPrefabs[Random.Range(0, toolsPrefabs.Length)],
             position,
             Quaternion.identity,
             transform);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -16,6 +17,8 @@ public class LevelManager : MonoBehaviour
         EventManager.AddListener(Events.LEVEL_FAILED, OnLevelFailed);
         EventManager.AddListener(Events.LEVEL_FINISHED, OnLevelFinished);
         EventManager.AddListener(Events.TRANSITION_CLOSE_FINISHED, OnTransitionCloseFinished);
+        EventManager.AddListener(Events.BOUNDARIES_BOTTOM_LEFT, OnBoundariesBottomLeft);
+        EventManager.AddListener(Events.BOUNDARIES_TOP_RIGHT, OnBoundariesTopRight);
     }
 
     void Start()
@@ -31,6 +34,8 @@ public class LevelManager : MonoBehaviour
         EventManager.RemoveListener(Events.LEVEL_FAILED, OnLevelFailed);
         EventManager.RemoveListener(Events.LEVEL_FINISHED, OnLevelFinished);
         EventManager.RemoveListener(Events.TRANSITION_CLOSE_FINISHED, OnTransitionCloseFinished);
+        EventManager.RemoveListener(Events.BOUNDARIES_BOTTOM_LEFT, OnBoundariesBottomLeft);
+        EventManager.RemoveListener(Events.BOUNDARIES_TOP_RIGHT, OnBoundariesTopRight);
     }
 
     private void Update()
@@ -40,6 +45,18 @@ public class LevelManager : MonoBehaviour
             _isMenuRequested = true;
             EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
         }
+    }
+    
+    void OnBoundariesBottomLeft(Vector3 vector)
+    {
+        GameState.MinX = vector.x;
+        GameState.MinY = vector.y;
+    }
+
+    void OnBoundariesTopRight(Vector3 vector)
+    {
+        GameState.MaxX = vector.x;
+        GameState.MaxY = vector.y;
     }
 
     void OnLevelStart()
@@ -63,6 +80,14 @@ public class LevelManager : MonoBehaviour
         _isFinished = true;
 
         AnalyticsEvent.LevelComplete(SceneManager.GetActiveScene().name);
+
+        StartCoroutine(WaitAndClose());
+    }
+
+    IEnumerator WaitAndClose()
+    {
+        yield return new WaitForSeconds(2f);
+        
         EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
     }
 

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Net : MonoBehaviour
 {
     [SerializeField] private ExplosionSmall explosionPrefab;
+    
     [SerializeField] private ParticleSystem fireParticle;
+    [SerializeField] private ParticleSystem netRepaired;
     
     private Animator _animator;
 
@@ -21,22 +23,15 @@ public class Net : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Player player = other.gameObject.GetComponent<Player>();
-        if (player && IsBroken)
-        {
-            Repair();
-        }
-    }
-
-    void Repair()
+    public void Repair()
     {
         IsBroken = false;
         _animator.SetBool("IsBroken", IsBroken);
         fireParticle.Stop();
         
         EventManager.TriggerEvent(Events.NET_REPAIRED);
+        
+        Instantiate(netRepaired, transform.position, Quaternion.identity, transform);
     }
 
     public void Broke()

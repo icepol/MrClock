@@ -64,16 +64,16 @@ TextureImporter:
     second: NetBroken
   - first:
       213: -8877105270654902643
-    second: Sprites_20
+    second: ToolBackground3
   - first:
       213: -1059341289296395630
-    second: Sprites_21
+    second: ToolBackground4
   - first:
       213: 8097644648361003729
-    second: Sprites_22
+    second: ToolBackground3
   - first:
       213: -5129541754429850415
-    second: Sprites_23
+    second: ToolBackground4
   - first:
       213: 1571997993387287584
     second: Wall
@@ -94,7 +94,7 @@ TextureImporter:
     second: Sprites_29
   - first:
       213: 6174724510220392764
-    second: Sprites_30
+    second: Tool
   - first:
       213: 2530064579156712857
     second: Sprites_31
@@ -714,15 +714,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_20
+      name: ToolBackground1
       rect:
         serializedVersion: 2
         x: 64
         y: 80
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -735,15 +735,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_21
+      name: ToolBackground2
       rect:
         serializedVersion: 2
         x: 80
         y: 80
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -756,15 +756,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_22
+      name: ToolBackground3
       rect:
         serializedVersion: 2
         x: 96
         y: 80
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -777,15 +777,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_23
+      name: ToolBackground4
       rect:
         serializedVersion: 2
         x: 112
         y: 80
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -924,15 +924,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_30
+      name: Tool
       rect:
         serializedVersion: 2
         x: 96
         y: 64
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
