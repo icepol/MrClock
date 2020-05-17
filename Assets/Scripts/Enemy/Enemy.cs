@@ -162,16 +162,29 @@ public class Enemy : MonoBehaviour, IDamage
     {
         state = State.Freezed;
         
+        StartCoroutine(WaitAndDestroy());
     }
 
     public void TakeDamage()
     {
-        Instantiate(explosion, transform.position, Quaternion.identity);
-
         GameState.Score += GameState.Level * scorePoints;
         
+        DestroyEnemy();
+    }
+
+    void DestroyEnemy()
+    {
+        Instantiate(explosion, transform.position, Quaternion.identity);
+
         EventManager.TriggerEvent(Events.ENEMY_DIED);
         
         Destroy(gameObject);
+    }
+    
+    IEnumerator WaitAndDestroy()
+    {
+        yield return new WaitForSeconds(Random.Range(0.2f, 1f));
+        
+        DestroyEnemy();
     }
 }

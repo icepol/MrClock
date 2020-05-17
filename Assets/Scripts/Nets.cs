@@ -42,7 +42,10 @@ public class Nets : MonoBehaviour
         foreach (Net net in nets)
         {
             if (net.IsBroken)
+            {
                 net.Repair();
+                break;
+            }
         }
     }
 
