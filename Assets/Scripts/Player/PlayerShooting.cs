@@ -43,6 +43,8 @@ public class PlayerShooting : MonoBehaviour
         
         Bullet bullet = Instantiate(bulletPrefab, position, Quaternion.identity);
         bullet.SetDirection(_player.FacingRight);
+        
+        EventManager.TriggerEvent(Events.PLAYER_SHOOT);
     }
 
     void OnPlayerDied()

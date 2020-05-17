@@ -70,6 +70,8 @@ MonoBehaviour:
   moveSpeed: 2
   explosion: {fileID: 1479038603773136117, guid: 6fcd848b8ab49444e89ce31d0ec6c926,
     type: 3}
+  particleDeath: {fileID: 67913037352162493, guid: be72eebcc10f740cfac29845f7318993,
+    type: 3}
   scorePoints: 1
 --- !u!50 &57649722
 Rigidbody2D:

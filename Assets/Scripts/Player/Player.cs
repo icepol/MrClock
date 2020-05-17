@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particleDeath;
-    [SerializeField] private ParticleSystem particleDust;
-    
     private SoundEffects _soundEffects;
     private Animator _animator;
     private bool _isLive = true;
@@ -37,9 +34,6 @@ public class Player : MonoBehaviour
         _isLive = false;
         
         _soundEffects.PlayOnDie();
-        
-        if (particleDeath)
-            Instantiate(particleDeath, transform.position, Quaternion.identity);
         
         EventManager.TriggerEvent(Events.PLAYER_DIED);
         

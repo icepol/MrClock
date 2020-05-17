@@ -167,6 +167,8 @@ public class Enemy : MonoBehaviour, IDamage
 
         GameState.Score += GameState.Level * scorePoints;
         
+        EventManager.TriggerEvent(Events.ENEMY_DIED);
+        
         Destroy(gameObject);
     }
 }
