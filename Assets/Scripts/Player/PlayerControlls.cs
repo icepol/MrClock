@@ -8,16 +8,18 @@ public class PlayerControlls : MonoBehaviour
     private Player _player;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
-    private SoundEffects _soundEffects;
+    private AudioSource _audioSource;
+    
     private bool _isEnabled = true;
+    private bool _isWalking = false;
     
     private void Awake()
     {
         _player = GetComponent<Player>();
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _soundEffects = GetComponent<SoundEffects>();
-        
+        _audioSource = GetComponent<AudioSource>();
+
         EventManager.AddListener(Events.LEVEL_FINISHED, OnLevelFinished);
         EventManager.AddListener(Events.PLAYER_DIED, OnPlayerDied);
     }
@@ -49,9 +51,22 @@ public class PlayerControlls : MonoBehaviour
         
         _rigidbody2D.velocity = velocity;
 
-        _animator.SetBool(
-            "IsWalking", 
-            Mathf.Abs(_rigidbody2D.velocity.x) > 0 || Mathf.Abs(_rigidbody2D.velocity.y) > 0);
+        bool isWalking = Mathf.Abs(_rigidbody2D.velocity.x) > 0 || Mathf.Abs(_rigidbody2D.velocity.y) > 0;
+
+        _animator.SetBool("IsWalking", isWalking);
+
+        if (isWalking && !_isWalking)
+        {
+            _isWalking = true;
+            _audioSource.Play();
+        }
+            
+        else if (!isWalking && _isWalking)
+        {
+            _isWalking = false;
+            _audioSource.Stop();
+        }
+            
 
         if (_rigidbody2D.velocity.x > 0.1f)
         {

@@ -39,7 +39,7 @@ public class PlayerShooting : MonoBehaviour
     {
         _delay = delayBetweenShooting;
 
-        Vector2 position = transform.position + new Vector3(-0.1f, -0.2f, 0);
+        Vector2 position = transform.position + new Vector3(0.1f, -0.2f, 0);
         
         Bullet bullet = Instantiate(bulletPrefab, position, Quaternion.identity);
         bullet.SetDirection(_player.FacingRight);

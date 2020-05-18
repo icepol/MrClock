@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private PlayerInventory _playerInventory;
-    private SoundEffects _soundEffects;
     private Animator _animator;
     
     private bool _isLive = true;
@@ -16,7 +15,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _playerInventory = GetComponent<PlayerInventory>();
-        _soundEffects = GetComponent<SoundEffects>();
         _animator = GetComponent<Animator>();
     }
 
@@ -50,13 +48,9 @@ public class Player : MonoBehaviour
             return;
 
         _isLive = false;
-        
-        _soundEffects.PlayOnDie();
-        
-        EventManager.TriggerEvent(Events.PLAYER_DIED);
-        
         _animator.SetTrigger("Alarm");
 
+        EventManager.TriggerEvent(Events.PLAYER_DIED);
         GameState.Lives -= 1;
 
         StartCoroutine(FinishDieing());

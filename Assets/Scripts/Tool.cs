@@ -7,7 +7,7 @@ public class Tool : MonoBehaviour
     [SerializeField] private int collectScorePoints = 5;
 
     private Vector2 _targetPosition;
-    
+
     private void Start()
     {
         EventManager.TriggerEvent(Events.TOOL_SPAWNED);

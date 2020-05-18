@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject explosion;
 
     private bool _isRight;
-    
+
     void Start()
     {
         Instantiate(explosion, transform.position, quaternion.identity);

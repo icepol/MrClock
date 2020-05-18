@@ -22,6 +22,6 @@ public class MusicManager : MonoBehaviour
 
     private void OnLevelStart()
     {
-        audioSource.time = 39f;
+        audioSource.time = 25f;
     }
 }
