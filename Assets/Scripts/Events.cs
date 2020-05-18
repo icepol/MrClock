@@ -20,6 +20,7 @@ public class Events
 
     public const string TOOL_SPAWNED = "ToolSpawned";
     public const string TOOL_COLLECTED = "ToolCollected";
+    public const string TOOL_COUNT_CHANGE = "ToolCountChange";
 
     public const string TRANSITION_OPEN = "TransitionOpen";
     public const string TRANSITION_CLOSE = "TransitionClose";

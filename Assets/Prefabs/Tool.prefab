@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   boundariesDistance: 0.5
-  collectScorePoints: 5
+  collectScorePoints: 1
 --- !u!1 &6732769425581684809
 GameObject:
   m_ObjectHideFlags: 0

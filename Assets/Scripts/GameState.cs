@@ -4,6 +4,7 @@ public static class GameState
 {
     public static int Lives = 3;
     public static int Score = 0;
+    public static int Tools = 0;
 
     public static float MinX = 0;
     public static float MaxX = 0;
@@ -17,5 +18,6 @@ public static class GameState
     {
         Lives = 3;
         Score = 0;
+        Tools = 0;
     }
 }

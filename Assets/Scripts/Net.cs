@@ -8,6 +8,8 @@ public class Net : MonoBehaviour
     
     [SerializeField] private ParticleSystem fireParticle;
     [SerializeField] private ParticleSystem netRepaired;
+
+    [SerializeField] private int repairScorePoint = 5;
     
     private Animator _animator;
 
@@ -24,23 +26,27 @@ public class Net : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!IsBroken || _isDestroyed)
-            return;
-        
-        Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy)
-        {
-            Destroy();
-        }
+        Player player = other.gameObject.GetComponent<Player>();
+        if (player)
+            ContactWithPlayer(player);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy)
+            ContactWithEnemy(enemy);
+    }
+    
     public void Repair()
     {
         IsBroken = false;
         _animator.SetBool("IsBroken", IsBroken);
         fireParticle.Stop();
+        
+        GameState.Score += GameState.Level * repairScorePoint;
         
         EventManager.TriggerEvent(Events.NET_REPAIRED);
         
@@ -57,12 +63,32 @@ public class Net : MonoBehaviour
         Instantiate(explosionPrefab, transform.position, Quaternion.identity, transform);
         fireParticle.Play();
     }
-
+    
     void Destroy()
     {
         _isDestroyed = true;
         _animator.SetBool("IsDestroyed", _isDestroyed);
         
         EventManager.TriggerEvent(Events.NET_DESTROYED);
+    }
+
+    void ContactWithPlayer(Player player)
+    {
+        if (!IsBroken || _isDestroyed)
+            return;
+        
+        if (player.PlayerInventory.ToolsCount > 0)
+            Repair();
+    }
+
+    void ContactWithEnemy(Enemy enemy)
+    {
+        if (!IsBroken || _isDestroyed)
+            return;
+
+        if (enemy.State == Enemy.EnemyState.ChasingPlayer)
+        {
+            Destroy();
+        }
     }
 }

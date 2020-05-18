@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IDamage
     private Vector2 _targetPosition;
     private Player _player;
 
-    private enum State
+    public enum EnemyState
     {
         Spawned,
         LookingForPlayer,
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour, IDamage
         Freezed
     }
 
-    private State state = State.Spawned;
+    public EnemyState State { get; private set; }
     
     void Start()
     {
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour, IDamage
     
     void Update()
     {
-        if (state == State.ChasingPlayer || state == State.Observing)
+        if (State == EnemyState.ChasingPlayer || State == EnemyState.Observing)
         {
             transform.position = Vector2.MoveTowards(
                 transform.position, 
@@ -54,9 +54,9 @@ public class Enemy : MonoBehaviour, IDamage
     private void OnTriggerEnter2D(Collider2D other)
     {
         Player player = other.GetComponent<Player>();
-        if (player && state != State.Spawned)
+        if (player && State != EnemyState.Spawned)
         {
-            state = State.AttackPlayer;
+            State = EnemyState.AttackPlayer;
             
             EventManager.TriggerEvent(Events.PLAYER_UNDER_ATTACK);
         }
@@ -74,21 +74,21 @@ public class Enemy : MonoBehaviour, IDamage
         {
             yield return new WaitForSeconds(delayBetweenState);
 
-            switch (state)
+            switch (State)
             {
-                case State.Spawned:
+                case EnemyState.Spawned:
                     Spawned();
                     break;
-                case State.LookingForPlayer:
+                case EnemyState.LookingForPlayer:
                     LookingForPlayer();
                     break;
-                case State.ChasingPlayer:
+                case EnemyState.ChasingPlayer:
                     ChasingPlayer();
                     break;
-                case State.AttackPlayer:
+                case EnemyState.AttackPlayer:
                     AttackPlayer();
                     break;
-                case State.Observing:
+                case EnemyState.Observing:
                     Observing();
                     break;
             }
@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour, IDamage
     {
         if (IsSpawningFinished)
             // once the spawning is finished we can go to next state
-            state = State.LookingForPlayer;
+            State = EnemyState.LookingForPlayer;
         else
         {
             IsSpawningFinished = true;
@@ -112,11 +112,11 @@ public class Enemy : MonoBehaviour, IDamage
         {
             _targetPosition = _player.transform.position;
 
-            state = State.ChasingPlayer;
+            State = EnemyState.ChasingPlayer;
         }
         else
         {
-            state = State.Observing;
+            State = EnemyState.Observing;
         }
     }
 
@@ -130,14 +130,14 @@ public class Enemy : MonoBehaviour, IDamage
         else if (Vector2.Distance(transform.position, _targetPosition) < 0.1f)
         {
             // look for the new position
-            state = State.LookingForPlayer;
+            State = EnemyState.LookingForPlayer;
         }
     }
 
     void AttackPlayer()
     {
         // find the player again
-        state = State.LookingForPlayer;
+        State = EnemyState.LookingForPlayer;
     }
 
     void Observing()
@@ -155,12 +155,12 @@ public class Enemy : MonoBehaviour, IDamage
 
     void OnPlayerDied()
     {
-        state = State.Observing;
+        State = EnemyState.Observing;
     }
 
     void OnLevelFinished()
     {
-        state = State.Freezed;
+        State = EnemyState.Freezed;
         
         StartCoroutine(WaitAndDestroy());
     }

@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private PlayerInventory _playerInventory;
     private SoundEffects _soundEffects;
     private Animator _animator;
+    
     private bool _isLive = true;
     
     public bool FacingRight { get; set; }
-    
+    public PlayerInventory PlayerInventory => _playerInventory;
+
     private void Awake()
     {
+        _playerInventory = GetComponent<PlayerInventory>();
         _soundEffects = GetComponent<SoundEffects>();
         _animator = GetComponent<Animator>();
     }
@@ -20,6 +24,8 @@ public class Player : MonoBehaviour
     {
         EventManager.AddListener(Events.PLAYER_UNDER_ATTACK, OnPlayerUnderAttack);
         EventManager.AddListener(Events.NET_DESTROYED, OnNetDestroyed);
+
+        FacingRight = true;
     }
 
     private void OnDestroy()

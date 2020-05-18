@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3638628704197794428}
   - component: {fileID: 80177391418988873}
   - component: {fileID: 2570103352582832648}
+  - component: {fileID: -7748093796614901605}
   m_Layer: 0
   m_Name: MrClock
   m_TagString: Player
@@ -200,6 +201,18 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3581180731955761837, guid: 6efff20e12aab49c4a6231b3c8e1ed9e,
     type: 3}
   delayBetweenShooting: 0.3
+--- !u!114 &-7748093796614901605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211764304920921840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26293b059c0564be9a60e290a8a05f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8365623989791889927
 GameObject:
   m_ObjectHideFlags: 0
