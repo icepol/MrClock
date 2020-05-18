@@ -12,6 +12,7 @@ public class Net : MonoBehaviour
     private Animator _animator;
 
     public bool IsBroken { get; private set; }
+    private bool _isDestroyed;
 
     private void Start()
     {
@@ -21,6 +22,18 @@ public class Net : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!IsBroken || _isDestroyed)
+            return;
+        
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy)
+        {
+            Destroy();
+        }
     }
 
     public void Repair()
@@ -43,5 +56,13 @@ public class Net : MonoBehaviour
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity, transform);
         fireParticle.Play();
+    }
+
+    void Destroy()
+    {
+        _isDestroyed = true;
+        _animator.SetBool("IsDestroyed", _isDestroyed);
+        
+        EventManager.TriggerEvent(Events.NET_DESTROYED);
     }
 }

@@ -19,14 +19,26 @@ public class Player : MonoBehaviour
     private void Start()
     {
         EventManager.AddListener(Events.PLAYER_UNDER_ATTACK, OnPlayerUnderAttack);
+        EventManager.AddListener(Events.NET_DESTROYED, OnNetDestroyed);
     }
 
     private void OnDestroy()
     {
         EventManager.RemoveListener(Events.PLAYER_UNDER_ATTACK, OnPlayerUnderAttack);
+        EventManager.RemoveListener(Events.NET_DESTROYED, OnNetDestroyed);
     }
 
     private void OnPlayerUnderAttack()
+    {
+        Die();
+    }
+
+    private void OnNetDestroyed()
+    {
+        Die();
+    }
+
+    void Die()
     {
         if (!_isLive)
             return;
