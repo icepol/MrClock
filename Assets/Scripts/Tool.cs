@@ -34,6 +34,10 @@ public class Tool : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player)
             Collect();
+
+        Wall wall = other.GetComponent<Wall>();
+        if (wall)
+            SetTargetPosition();
     }
 
     void Collect()
