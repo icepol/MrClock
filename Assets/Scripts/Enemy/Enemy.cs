@@ -172,7 +172,7 @@ public class Enemy : MonoBehaviour, IDamage
         DestroyEnemy();
     }
 
-    void DestroyEnemy()
+    public void DestroyEnemy()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
 

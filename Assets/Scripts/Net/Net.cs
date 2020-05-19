@@ -83,12 +83,15 @@ public class Net : MonoBehaviour
 
     void ContactWithEnemy(Enemy enemy)
     {
-        if (!IsBroken || _isDestroyed)
+        if (_isDestroyed)
+            return;
+        
+        if (enemy.State != Enemy.EnemyState.ChasingPlayer)
             return;
 
-        if (enemy.State == Enemy.EnemyState.ChasingPlayer)
-        {
+        if (IsBroken)
             Destroy();
-        }
+        else
+            enemy.DestroyEnemy();
     }
 }
