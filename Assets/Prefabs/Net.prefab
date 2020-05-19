@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1238869945}
   - component: {fileID: 747399467677284956}
   - component: {fileID: 7260273606971256178}
+  - component: {fileID: -7893202981124449125}
   m_Layer: 0
   m_Name: Net
   m_TagString: Untagged
@@ -148,6 +149,19 @@ MonoBehaviour:
   fireParticle: {fileID: 6802342291167633383}
   netRepaired: {fileID: 1638532092587942942, guid: 9dd6390c236284065bc9f5d5061d25be,
     type: 3}
+  repairScorePoint: 5
+--- !u!114 &-7893202981124449125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4404010621700971807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14a5d1f3615b48c1b91fc1de39067cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5250064701863361529
 PrefabInstance:
   m_ObjectHideFlags: 0
