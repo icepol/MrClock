@@ -22,11 +22,9 @@ public class MenuManager : MonoBehaviour
         EventManager.TriggerEvent(Events.TRANSITION_OPEN);
         
         # if UNITY_WEBGL
-            quitButton.gameObject.SetActive(false);
+            playButton.transform.position = quitButton.transform.position;
         
-            Vector2 position = playButton.transform.position;
-            position.y -= 100;
-            playButton.transform.position = position;
+            quitButton.gameObject.SetActive(false);
         #endif
     }
 
