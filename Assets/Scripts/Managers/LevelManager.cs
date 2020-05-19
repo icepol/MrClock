@@ -66,10 +66,8 @@ public class LevelManager : MonoBehaviour
     
     void OnLevelFailed()
     {
-        if (GameState.Lives <= 1)
-        {
-            _isGameOver = true;            
-        }
+        if (GameState.Lives <= 0)
+            _isGameOver = true;
 
         AnalyticsEvent.LevelFail(SceneManager.GetActiveScene().name);
         EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
