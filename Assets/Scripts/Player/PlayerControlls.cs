@@ -56,17 +56,9 @@ public class PlayerControlls : MonoBehaviour
         _animator.SetBool("IsWalking", isWalking);
 
         if (isWalking && !_isWalking)
-        {
-            _isWalking = true;
-            _audioSource.Play();
-        }
-            
+            StartWalking();
         else if (!isWalking && _isWalking)
-        {
-            _isWalking = false;
-            _audioSource.Stop();
-        }
-            
+            StopWalking();
 
         if (_rigidbody2D.velocity.x > 0.1f)
         {
@@ -83,10 +75,27 @@ public class PlayerControlls : MonoBehaviour
     void OnLevelFinished()
     {
         _isEnabled = false;
+        
+        StopWalking();
     }
 
     void OnPlayerDied()
     {
         _isEnabled = false;
+        
+        StopWalking();
     }
+
+    void StartWalking()
+    {
+        _isWalking = true;
+        _audioSource.Play();
+    }
+
+    void StopWalking()
+    {
+        _isWalking = false;
+        _audioSource.Stop();
+    }
+    
 }
