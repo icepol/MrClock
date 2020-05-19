@@ -9,18 +9,19 @@ public class PlayerShooting : MonoBehaviour
 
     private Player _player;
     private float _delay;
-    private bool _isLive = true;
+    private bool _isEnabled = true;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
         
+        EventManager.AddListener(Events.LEVEL_FINISHED, OnLevelFinished);
         EventManager.AddListener(Events.PLAYER_DIED, OnPlayerDied);
     }
     
     void Update()
     {
-        if (!_isLive)
+        if (!_isEnabled)
             return;
         
         if (Input.GetKeyDown(KeyCode.Space) && _delay <= 0)
@@ -32,6 +33,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void OnDestroy()
     {
+        EventManager.RemoveListener(Events.LEVEL_FINISHED, OnLevelFinished);
         EventManager.RemoveListener(Events.PLAYER_DIED, OnPlayerDied);
     }
 
@@ -49,6 +51,11 @@ public class PlayerShooting : MonoBehaviour
 
     void OnPlayerDied()
     {
-        _isLive = false;
+        _isEnabled = false;
+    }
+
+    void OnLevelFinished()
+    {
+        _isEnabled = false;
     }
 }
