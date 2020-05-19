@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class Nets : MonoBehaviour
+public class NetContainer : MonoBehaviour
 {
     [SerializeField] private float minBrokeDelay = 0.5f;
     [SerializeField] private float maxBrokeDelay = 1f;

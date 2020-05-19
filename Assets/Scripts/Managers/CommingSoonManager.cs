@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,6 +17,12 @@ public class CommingSoonManager : MonoBehaviour
         EventManager.TriggerEvent(Events.TRANSITION_OPEN);
 
         score.text = GameState.Score.ToString();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
     }
 
     private void OnDestroy()

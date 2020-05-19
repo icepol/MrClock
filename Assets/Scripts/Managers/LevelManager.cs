@@ -38,15 +38,6 @@ public class LevelManager : MonoBehaviour
         EventManager.RemoveListener(Events.BOUNDARIES_TOP_RIGHT, OnBoundariesTopRight);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            _isMenuRequested = true;
-            EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
-        }
-    }
-    
     void OnBoundariesBottomLeft(Vector3 vector)
     {
         GameState.MinX = vector.x;
