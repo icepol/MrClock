@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Runtime.InteropServices.ComTypes;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
+using GameAnalyticsSDK;
 
 public class LevelManager : MonoBehaviour
 {
@@ -23,7 +21,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        AnalyticsEvent.LevelStart(SceneManager.GetActiveScene().name);
+        GameAnalytics.Initialize();
         
         EventManager.TriggerEvent(Events.LEVEL_START);
     }
@@ -52,6 +50,7 @@ public class LevelManager : MonoBehaviour
 
     void OnLevelStart()
     {
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, SceneManager.GetActiveScene().name);
         EventManager.TriggerEvent(Events.TRANSITION_OPEN);
     }
     
@@ -59,16 +58,16 @@ public class LevelManager : MonoBehaviour
     {
         if (GameState.Lives <= 0)
             _isGameOver = true;
-
-        AnalyticsEvent.LevelFail(SceneManager.GetActiveScene().name);
+        
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, SceneManager.GetActiveScene().name);
         EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
     }
 
     void OnLevelFinished()
     {
         _isFinished = true;
-
-        AnalyticsEvent.LevelComplete(SceneManager.GetActiveScene().name);
+        
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, SceneManager.GetActiveScene().name);
 
         StartCoroutine(WaitAndClose());
     }
