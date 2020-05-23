@@ -21,8 +21,8 @@ public class CameraFollow : MonoBehaviour
 
     private float _width;
     private float _height;
-    
-    float z;
+
+    private float _z;
 
     private bool _isFollowing;
 
@@ -39,13 +39,13 @@ public class CameraFollow : MonoBehaviour
     {
         _height = Camera.main.orthographicSize * 2f;
         _width = _height * Camera.main.aspect;
-        
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         
         _target = player.transform;
         _targetBody = player.GetComponent<Rigidbody2D>();
 
-        z = transform.position.z;
+        _z = transform.position.z;
 
         _isFollowing = false;
     }
@@ -69,26 +69,26 @@ public class CameraFollow : MonoBehaviour
             return;
         
         Vector2 currentPosition = transform.position;
+        
         Vector2 targetPosition = _target.position;
+        Vector2 targetVelocity = _targetBody.velocity;
 
-        Vector2 velocity = _targetBody.velocity;
-
-        float targetX = targetPosition.x + velocity.x * 0.5f;
-        float targetY = targetPosition.y + velocity.y * 0.5f;
+        float targetX = targetPosition.x + targetVelocity.x * 0.5f;
+        float targetY = targetPosition.y + targetVelocity.y * 0.5f;
 
         float x = Mathf.Clamp(
             Mathf.SmoothDamp(currentPosition.x, targetX, ref _velocity.x, smoothX),
             _xMin,
             _xMax
         );
-        
+
         float y = Mathf.Clamp(
             Mathf.SmoothDamp(currentPosition.y, targetY, ref _velocity.y, smoothY),
             _yMin,
             _yMax
         );
 
-        transform.position = new Vector3(Round(x), Round(y), z);
+        transform.position = new Vector3(Round(x), Round(y), _z);
     }
 
     float Round(float value)
@@ -104,13 +104,19 @@ public class CameraFollow : MonoBehaviour
     void OnBoundariesBottomLeft(Vector3 vector)
     {
         _xMin = vector.x + _width * 0.5f + overflow;
+        _xMin = _xMin < 0 ? _xMin : 0;
+        
         _yMin = vector.y + _height * 0.5f + overflow;
+        _yMin = _yMin < 0 ? _yMin : 0;
     }
 
     void OnBoundariesTopRight(Vector3 vector)
     {
         _xMax = vector.x - _width * 0.5f - overflow;
+        _xMax = _xMax > 0 ? _xMax : 0;
+        
         _yMax = vector.y - _height * 0.5f - overflow;
+        _yMax = _yMax > 0 ? _yMax : 0;
     }
 
     void OnCameraStartFollowing()
