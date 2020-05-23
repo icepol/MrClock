@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CommingSoonManager : MonoBehaviour
 {
     [SerializeField] private Text score;
+    [SerializeField] private GameObject webGLPanel;
+    [SerializeField] private GameObject restOSPanel;
     
     private void Awake()
     {
@@ -17,6 +19,14 @@ public class CommingSoonManager : MonoBehaviour
         EventManager.TriggerEvent(Events.TRANSITION_OPEN);
 
         score.text = GameState.Score.ToString();
+
+#if UNITY_WEBGL
+        webGLPanel.SetActive(true);
+        restOSPanel.SetActive(false);
+#else
+        webGLPanel.SetActive(false);
+        restOSPanel.SetActive(true);
+#endif
     }
 
     private void Update()
@@ -29,14 +39,19 @@ public class CommingSoonManager : MonoBehaviour
     {
         EventManager.RemoveListener(Events.TRANSITION_CLOSE_FINISHED, OnTransitionCloseFinished);
     }
+    
+    void OnTransitionCloseFinished()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
     public void OnMenuButtonClick()
     {
         EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
     }
 
-    public void OnTransitionCloseFinished()
+    public void OnWantMoreLinkClick()
     {
-        SceneManager.LoadScene("Menu");
-    }
+        Application.OpenURL("https://pixelook.itch.io/mrclock");
+    } 
 }
