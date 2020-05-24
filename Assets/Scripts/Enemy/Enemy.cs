@@ -8,10 +8,14 @@ public class Enemy : MonoBehaviour, IDamage
 
     [SerializeField] private GameObject explosion;
 
-    [SerializeField] private int scorePoints = 1;
+    [SerializeField] private int lives = 1;
+    [SerializeField] private int hitScorePoints = 1;
+    [SerializeField] private int killScorePoints = 1;
     
     public bool IsSpawningFinished { get; set; }
 
+    private Animator _animator;
+    
     private Vector2 _targetPosition;
     private Player _player;
 
@@ -26,7 +30,12 @@ public class Enemy : MonoBehaviour, IDamage
     }
 
     public EnemyState State { get; private set; }
-    
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     void Start()
     {
         _player = FindObjectOfType<Player>();
@@ -48,7 +57,11 @@ public class Enemy : MonoBehaviour, IDamage
                 );
             
             transform.localScale = new Vector2(transform.position.x < _targetPosition.x ? 1 : -1, 1);
+            
+            _animator.SetBool("IsMoving", true);
         }
+        else
+            _animator.SetBool("IsMoving", false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -167,9 +180,15 @@ public class Enemy : MonoBehaviour, IDamage
 
     public void TakeDamage()
     {
-        GameState.Score += GameState.Level * scorePoints;
-        
-        DestroyEnemy();
+        lives--;
+
+        if (lives <= 0)
+        {
+            GameState.Score += GameState.Level * killScorePoints;
+            DestroyEnemy();
+        }
+        else
+            GameState.Score += GameState.Level * hitScorePoints;
     }
 
     public void DestroyEnemy()

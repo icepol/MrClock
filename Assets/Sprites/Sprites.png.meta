@@ -118,7 +118,7 @@ TextureImporter:
     second: Sprites_37
   - first:
       213: 6077751805537155827
-    second: Sprites_38
+    second: EnemyWorm1
   - first:
       213: -6907802367980946021
     second: Sprites_39
@@ -142,7 +142,7 @@ TextureImporter:
     second: Sprites_45
   - first:
       213: -6810194602936740105
-    second: Sprites_46
+    second: EnemyWorm2
   - first:
       213: 4774595779057751234
     second: Sprites_47
@@ -166,7 +166,7 @@ TextureImporter:
     second: Sprites_53
   - first:
       213: 97026824314581274
-    second: Sprites_54
+    second: EnemyWorm3
   - first:
       213: -8316139679076634226
     second: Sprites_55
@@ -1092,15 +1092,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_38
+      name: EnemyWorm1
       rect:
         serializedVersion: 2
         x: 96
         y: 48
-        width: 16
+        width: 32
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1108,27 +1108,6 @@ TextureImporter:
       bones: []
       spriteID: 3faf70ad013885450800000000000000
       internalID: 6077751805537155827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprites_39
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 48
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9db4ed685e8220a0800000000000000
-      internalID: -6907802367980946021
       vertices: []
       indices: 
       edges: []
@@ -1260,15 +1239,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_46
+      name: EnemyWorm2
       rect:
         serializedVersion: 2
         x: 96
         y: 32
-        width: 16
+        width: 32
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1276,27 +1255,6 @@ TextureImporter:
       bones: []
       spriteID: 7f65ca037145d71a0800000000000000
       internalID: -6810194602936740105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprites_47
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 32
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c411dc6095c24240800000000000000
-      internalID: 4774595779057751234
       vertices: []
       indices: 
       edges: []
@@ -1428,15 +1386,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_54
+      name: EnemyWorm3
       rect:
         serializedVersion: 2
         x: 96
         y: 16
-        width: 16
+        width: 32
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1444,27 +1402,6 @@ TextureImporter:
       bones: []
       spriteID: a1174f4f165b85100800000000000000
       internalID: 97026824314581274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprites_55
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 16
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e813b1ec503279c80800000000000000
-      internalID: -8316139679076634226
       vertices: []
       indices: 
       edges: []

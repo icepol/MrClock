@@ -6421,9 +6421,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4138549961819883086, guid: ad267301e05fd4b518bc6ce400a9e401,
         type: 3}
+      propertyPath: enemiesPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138549961819883086, guid: ad267301e05fd4b518bc6ce400a9e401,
+        type: 3}
       propertyPath: maxEnemies
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4138549961819883086, guid: ad267301e05fd4b518bc6ce400a9e401,
+        type: 3}
+      propertyPath: enemiesPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 57649723, guid: 58f33e91bdd1540c986554aa59a086df,
+        type: 3}
+    - target: {fileID: 4138549961819883086, guid: ad267301e05fd4b518bc6ce400a9e401,
+        type: 3}
+      propertyPath: enemiesPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: -2427686113950742964, guid: fcd760cc50124415689507d29b543740,
+        type: 3}
+    - target: {fileID: 4138549961819883086, guid: ad267301e05fd4b518bc6ce400a9e401,
+        type: 3}
+      propertyPath: enemiesPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: -2427686113950742964, guid: fcd760cc50124415689507d29b543740,
+        type: 3}
     - target: {fileID: 4138549961819883087, guid: ad267301e05fd4b518bc6ce400a9e401,
         type: 3}
       propertyPath: m_Name
