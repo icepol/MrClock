@@ -11,6 +11,10 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private Enemy[] enemiesPrefabs;
     
+    [SerializeField] private Wormhole wormholePrefab;
+    [SerializeField] private float wormholeMinTravelTime = 0.5f;
+    [SerializeField] private float wormholeMaxTravelTime = 1f;
+    
     [SerializeField] private float overflow = 0f;
     
     private float _xMin;
@@ -70,8 +74,8 @@ public class EnemySpawner : MonoBehaviour
         while (_isSpawning)
         {
             if (!LimitOfEnemiesReached())
-                SpawnEnemy();
-            
+                yield return StartCoroutine(SpawnEnemy());
+
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
         }
     }
@@ -81,13 +85,23 @@ public class EnemySpawner : MonoBehaviour
         return GetComponentsInChildren<Enemy>().Length >= maxEnemies;
     }
 
-    void SpawnEnemy()
+    IEnumerator SpawnEnemy()
     {
         Vector2 position = new Vector2(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax));
-        Enemy enemy = Instantiate(
+
+        Wormhole wormhole = Instantiate(wormholePrefab,
+            position,
+            Quaternion.identity,
+            transform);
+        
+        yield return new WaitForSeconds(Random.Range(wormholeMinTravelTime, wormholeMaxTravelTime));
+
+        Instantiate(
             enemiesPrefabs[Random.Range(0, enemiesPrefabs.Length)],
             position,
             Quaternion.identity,
             transform);
+        
+        wormhole.Close();
     }
 }

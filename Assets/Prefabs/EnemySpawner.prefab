@@ -49,4 +49,8 @@ MonoBehaviour:
   maxEnemies: 2
   enemiesPrefabs:
   - {fileID: 57649723, guid: 58f33e91bdd1540c986554aa59a086df, type: 3}
+  wormholePrefab: {fileID: 7367656877971587289, guid: b46c362c50e4c486ca58659994d88d4c,
+    type: 3}
+  wormholeMinTravelTime: 0.5
+  wormholeMaxTravelTime: 2
   overflow: 1

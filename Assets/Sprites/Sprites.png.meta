@@ -79,10 +79,10 @@ TextureImporter:
     second: Wall
   - first:
       213: -975749167277906879
-    second: Sprites_25
+    second: Wormhole1
   - first:
       213: 6638901707931224523
-    second: Sprites_26
+    second: Wormhole2
   - first:
       213: 2881394300597005124
     second: NetDestroyed
@@ -819,15 +819,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_25
+      name: Wormhole1
       rect:
         serializedVersion: 2
         x: 16
         y: 64
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -840,15 +840,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_26
+      name: Wormhole2
       rect:
         serializedVersion: 2
         x: 32
         y: 64
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
