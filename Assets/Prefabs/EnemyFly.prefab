@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6986911124620922823}
   - component: {fileID: 1162723022116429881}
-  - component: {fileID: 57649723}
   - component: {fileID: 57649722}
   - component: {fileID: 57649721}
+  - component: {fileID: -7090248541339765423}
   m_Layer: 0
   m_Name: EnemyFly
   m_TagString: Untagged
@@ -54,23 +54,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &57649723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837960604016363608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acab9e9b4227e461d983430128842084, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBetweenState: 0.8
-  moveSpeed: 2
-  explosion: {fileID: 1479038603773136117, guid: 6fcd848b8ab49444e89ce31d0ec6c926,
-    type: 3}
-  scorePoints: 1
 --- !u!50 &57649722
 Rigidbody2D:
   serializedVersion: 4
@@ -108,6 +91,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-7090248541339765423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837960604016363608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acab9e9b4227e461d983430128842084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBetweenState: 0.8
+  moveSpeed: 2
+  explosion: {fileID: 1479038603773136117, guid: 6fcd848b8ab49444e89ce31d0ec6c926,
+    type: 3}
+  lives: 1
+  hitScorePoints: 1
+  killScorePoints: 3
 --- !u!1 &8267335665092542235
 GameObject:
   m_ObjectHideFlags: 0

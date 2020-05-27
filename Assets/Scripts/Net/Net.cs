@@ -14,6 +14,8 @@ public class Net : MonoBehaviour
     private Animator _animator;
 
     public bool IsBroken { get; private set; }
+    public bool IsRepaired { get; private set; }
+    
     private bool _isDestroyed;
 
     private void Start()
@@ -43,6 +45,8 @@ public class Net : MonoBehaviour
     public void Repair()
     {
         IsBroken = false;
+        IsRepaired = true;
+        
         _animator.SetBool("IsBroken", IsBroken);
         fireParticle.Stop();
         

@@ -37,11 +37,11 @@ public class NetContainer : MonoBehaviour
         // check if all nets are repaired
         foreach (Net net in nets)
         {
-            if (net.IsBroken)
+            if (!net.IsRepaired)
                 return;
         }
         
         // all are repaired, we can switch to next level
-        EventManager.TriggerEvent(Events.LEVEL_FINISHED);
+        EventManager.TriggerEvent(Events.NET_ALL_REPAIRED);
     }
 }

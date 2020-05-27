@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     private bool _isFinished;
     private bool _isMenuRequested;
     private bool _isGameOver;
-        
+
     private void Awake()
     {
         EventManager.AddListener(Events.LEVEL_START, OnLevelStart);
@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
         EventManager.AddListener(Events.TRANSITION_CLOSE_FINISHED, OnTransitionCloseFinished);
         EventManager.AddListener(Events.BOUNDARIES_BOTTOM_LEFT, OnBoundariesBottomLeft);
         EventManager.AddListener(Events.BOUNDARIES_TOP_RIGHT, OnBoundariesTopRight);
+        EventManager.AddListener(Events.NET_ALL_REPAIRED, OnNetAllRepaired);
     }
 
     void Start()
@@ -34,6 +35,7 @@ public class LevelManager : MonoBehaviour
         EventManager.RemoveListener(Events.TRANSITION_CLOSE_FINISHED, OnTransitionCloseFinished);
         EventManager.RemoveListener(Events.BOUNDARIES_BOTTOM_LEFT, OnBoundariesBottomLeft);
         EventManager.RemoveListener(Events.BOUNDARIES_TOP_RIGHT, OnBoundariesTopRight);
+        EventManager.RemoveListener(Events.NET_ALL_REPAIRED, OnNetAllRepaired);
     }
 
     void OnBoundariesBottomLeft(Vector3 vector)
@@ -110,5 +112,11 @@ public class LevelManager : MonoBehaviour
     {
         int levelIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(levelIndex + 1);
+    }
+    
+    void OnNetAllRepaired()
+    {
+        // all are repaired, we can switch to next level
+        EventManager.TriggerEvent(Events.LEVEL_FINISHED);
     }
 }

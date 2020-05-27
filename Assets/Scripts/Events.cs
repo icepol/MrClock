@@ -17,6 +17,7 @@ public class Events
     public const string NET_BROKEN = "NetBroken";
     public const string NET_REPAIRED = "NetRepaired";
     public const string NET_DESTROYED = "NetDestroyed";
+    public const string NET_ALL_REPAIRED = "NetAllRepaired";
 
     public const string TOOL_SPAWNED = "ToolSpawned";
     public const string TOOL_COLLECTED = "ToolCollected";
