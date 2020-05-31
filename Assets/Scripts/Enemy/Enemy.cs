@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] private int lives = 1;
     [SerializeField] private int hitScorePoints = 1;
     [SerializeField] private int killScorePoints = 1;
+
+    [SerializeField] private ScoreBalloon scoreBalloonPrefab;
     
     public bool IsSpawningFinished { get; set; }
 
@@ -184,11 +186,20 @@ public class Enemy : MonoBehaviour, IDamage
 
         if (lives <= 0)
         {
-            GameState.Score += GameState.Level * killScorePoints;
+            int score = GameState.Level * killScorePoints;
+            
+            GameState.Score += score;
+            SpawnScoreBalloon(score);
+            
             DestroyEnemy();
         }
         else
-            GameState.Score += GameState.Level * hitScorePoints;
+        {
+            int score = GameState.Level * hitScorePoints;
+
+            GameState.Score += score;
+            SpawnScoreBalloon(score);
+        }
     }
 
     public void DestroyEnemy()
@@ -205,5 +216,11 @@ public class Enemy : MonoBehaviour, IDamage
         yield return new WaitForSeconds(Random.Range(0.2f, 1f));
         
         DestroyEnemy();
+    }
+
+    void SpawnScoreBalloon(int score)
+    {
+        ScoreBalloon scoreBalloon = Instantiate(scoreBalloonPrefab, transform.position, Quaternion.identity);
+        scoreBalloon.SetScore(score);
     }
 }

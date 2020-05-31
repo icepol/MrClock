@@ -6,6 +6,8 @@ public class Tool : MonoBehaviour
     [SerializeField] private float boundariesDistance = 0.5f;
     [SerializeField] private int collectScorePoints = 5;
 
+    [SerializeField] private ScoreBalloon scoreBalloonPrefab;
+ 
     private Vector2 _targetPosition;
 
     private void Start()
@@ -44,7 +46,10 @@ public class Tool : MonoBehaviour
     {
         EventManager.TriggerEvent(Events.TOOL_COLLECTED);
         
-        GameState.Score += GameState.Level * collectScorePoints;
+        int score = GameState.Level * collectScorePoints;
+        
+        GameState.Score += score;
+        SpawnScoreBalloon(score);
         
         Destroy(gameObject);
     }
@@ -55,5 +60,11 @@ public class Tool : MonoBehaviour
             Random.Range(GameState.MinX + boundariesDistance, GameState.MaxX - boundariesDistance), 
             Random.Range(GameState.MinY + boundariesDistance, GameState.MaxY - boundariesDistance)
             );
+    }
+    
+    void SpawnScoreBalloon(int score)
+    {
+        ScoreBalloon scoreBalloon = Instantiate(scoreBalloonPrefab, transform.position, Quaternion.identity);
+        scoreBalloon.SetScore(score);
     }
 }

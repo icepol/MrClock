@@ -286,6 +286,8 @@ MonoBehaviour:
   moveSpeed: 3
   boundariesDistance: 0.5
   collectScorePoints: 1
+  scoreBalloonPrefab: {fileID: 6740383729997024790, guid: 20dba30dc0f584e9386c03d34da24edc,
+    type: 3}
 --- !u!1 &6732769425581684809
 GameObject:
   m_ObjectHideFlags: 0

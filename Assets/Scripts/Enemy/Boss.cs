@@ -15,6 +15,8 @@ public class Boss : MonoBehaviour, IDamage
 
     [SerializeField] private int spawnHitCount = 1;
     [SerializeField] private Tool toolPrefab;
+    
+    [SerializeField] private ScoreBalloon scoreBalloonPrefab;
 
     public bool IsSpawningFinished { get; set; }
 
@@ -204,14 +206,23 @@ public class Boss : MonoBehaviour, IDamage
         SpawnToolIfRequired();
 
         State = EnemyState.ChasingPlayer;
-
+        
         if (lives <= 0)
         {
-            GameState.Score += GameState.Level * killScorePoints;
+            int score = GameState.Level * killScorePoints;
+            
+            GameState.Score += score;
+            SpawnScoreBalloon(score);
+            
             DestroyEnemy();
         }
         else
-            GameState.Score += GameState.Level * hitScorePoints;
+        {
+            int score = GameState.Level * hitScorePoints;
+
+            GameState.Score += score;
+            SpawnScoreBalloon(score);
+        }
     }
 
     public void DestroyEnemy()
@@ -236,5 +247,11 @@ public class Boss : MonoBehaviour, IDamage
             return;
 
         Instantiate(toolPrefab, transform.position, Quaternion.identity);
+    }
+    
+    void SpawnScoreBalloon(int score)
+    {
+        ScoreBalloon scoreBalloon = Instantiate(scoreBalloonPrefab, transform.position, Quaternion.identity);
+        scoreBalloon.SetScore(score);
     }
 }

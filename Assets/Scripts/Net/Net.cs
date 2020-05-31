@@ -11,6 +11,8 @@ public class Net : MonoBehaviour
 
     [SerializeField] private int repairScorePoint = 5;
     
+    [SerializeField] private ScoreBalloon scoreBalloonPrefab;
+    
     private Animator _animator;
 
     public bool IsBroken { get; private set; }
@@ -49,8 +51,11 @@ public class Net : MonoBehaviour
         
         _animator.SetBool("IsBroken", IsBroken);
         fireParticle.Stop();
+
+        int score = GameState.Level * repairScorePoint;
         
-        GameState.Score += GameState.Level * repairScorePoint;
+        GameState.Score += score;
+        SpawnScoreBalloon(score);
         
         EventManager.TriggerEvent(Events.NET_REPAIRED);
         
@@ -97,5 +102,11 @@ public class Net : MonoBehaviour
             Destroy();
         else
             enemy.DestroyEnemy();
+    }
+    
+    void SpawnScoreBalloon(int score)
+    {
+        ScoreBalloon scoreBalloon = Instantiate(scoreBalloonPrefab, transform.position, Quaternion.identity);
+        scoreBalloon.SetScore(score);
     }
 }
