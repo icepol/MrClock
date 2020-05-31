@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private Button playButton;
+    [SerializeField] private Button settingsButton;
     [SerializeField] private Button quitButton;
-    
+
+    private bool _settings;
     private bool _quit;
     private bool _keyPressed;
     
@@ -22,7 +24,8 @@ public class MenuManager : MonoBehaviour
         EventManager.TriggerEvent(Events.TRANSITION_OPEN);
         
         # if UNITY_WEBGL
-            playButton.transform.position = quitButton.transform.position;
+            playButton.transform.position = settingsButton.transform.position;
+            settingsButton.transform.position = quitButton.transform.position;
         
             quitButton.gameObject.SetActive(false);
         #endif
@@ -55,6 +58,12 @@ public class MenuManager : MonoBehaviour
     {
         EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
     }
+    
+    public void OnSettingsButtonClick()
+    {
+        _settings = true;
+        EventManager.TriggerEvent(Events.TRANSITION_CLOSE);
+    }
 
     public void OnQuitButtonClick()
     {
@@ -66,6 +75,10 @@ public class MenuManager : MonoBehaviour
     {
         if (_quit)
             Application.Quit();
+        else if (_settings)
+        {
+            SceneManager.LoadScene("Settings");
+        }
         else
         {
             GameState.Reset();

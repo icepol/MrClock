@@ -39,43 +39,43 @@ public class SoundsManager : MonoBehaviour
 
     public void OnEnemyDied()
     {
-        if (enemyDie)
+        if (enemyDie && Settings.IsSfxEnabled)
             AudioSource.PlayClipAtPoint(enemyDie, _cameraTransform.position);
     }
 
     public void OnPlayerShoot()
     {
-        if (fire)
+        if (fire && Settings.IsSfxEnabled)
             AudioSource.PlayClipAtPoint(fire, _cameraTransform.position);
     }
 
     public void OnNetBroken()
     {
-        if (netExplosion)
+        if (netExplosion && Settings.IsSfxEnabled)
             AudioSource.PlayClipAtPoint(netExplosion, _cameraTransform.position);
     }
     
     public void OnNetDestroyed()
     {
-        if (netExplosion)
+        if (netExplosion && Settings.IsSfxEnabled)
             AudioSource.PlayClipAtPoint(netExplosion, _cameraTransform.position);
     }
     
     public void OnNetRepaired()
     {
-        if (netFixed)
+        if (netFixed && Settings.IsSfxEnabled)
             AudioSource.PlayClipAtPoint(netFixed, _cameraTransform.position);
     }
     
     public void OnPlayerDied()
     {
-        if (playerDie)
+        if (playerDie && Settings.IsSfxEnabled)
             AudioSource.PlayClipAtPoint(playerDie, _cameraTransform.position);
     }
     
     public void OnToolCollected()
     {
-        if (toolCollected)
+        if (toolCollected && Settings.IsSfxEnabled)
             AudioSource.PlayClipAtPoint(toolCollected, _cameraTransform.position);
     }
 }

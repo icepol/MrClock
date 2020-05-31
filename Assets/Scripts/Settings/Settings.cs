@@ -1,21 +1,31 @@
 ﻿public class Settings {
+    const string SFX_ENABLED = "sfx_enabled";
+    private const string MUSIC_ENABLED = "music_enabled";
 
-    const string LAST_LEVEL = "lastLevel";
-    const string DIFFICULTY = "difficulty";
-    
-    # if UNITY_WEBGL
+# if UNITY_WEBGL
         static IPrefs _prefs = new CSVPrefs();
-    # else
+# else
         static IPrefs _prefs = new UnityPrefs();
-    #endif
+#endif
     
-    public static string LastLevel {
+    public static bool IsSfxEnabled {
         get {
-            return _prefs.GetString(LAST_LEVEL, "");
+            return _prefs.GetInt(SFX_ENABLED, 1) == 1;
         }
 
         set {
-            _prefs.SetString(LAST_LEVEL, value);
+            _prefs.SetInt(SFX_ENABLED, value ? 1 : 0);
+            _prefs.Save();
+        }
+    }
+    
+    public static bool IsMusicEnabled {
+        get {
+            return _prefs.GetInt(MUSIC_ENABLED, 1) == 1;
+        }
+
+        set {
+            _prefs.SetInt(MUSIC_ENABLED, value ? 1 : 0);
             _prefs.Save();
         }
     }

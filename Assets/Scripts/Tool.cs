@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tool : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public class Tool : MonoBehaviour
     [SerializeField] private int collectScorePoints = 5;
 
     [SerializeField] private ScoreBalloon scoreBalloonPrefab;
- 
+
     private Vector2 _targetPosition;
 
     private void Start()

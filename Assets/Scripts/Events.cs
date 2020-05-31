@@ -33,4 +33,7 @@ public class Events
     public const string BOUNDARIES_BOTTOM_LEFT = "BoundariesBottomLeft";
     public const string CAMERA_START_FOLLOWING = "CameraStartFollowing";
     public const string CAMERA_STOP_FOLLOWING = "CameraStopFollowing";
+    
+    // settings events
+    public const string MUSIC_SETTINGS_CHANGED = "MusicSettingsChanged";
 }

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 9202274046852808763}
   - component: {fileID: -7250263364474722348}
   - component: {fileID: 769471526031737148}
+  - component: {fileID: -4060179632802508975}
   m_Layer: 0
   m_Name: Tool
   m_TagString: Untagged
@@ -288,6 +289,18 @@ MonoBehaviour:
   collectScorePoints: 1
   scoreBalloonPrefab: {fileID: 6740383729997024790, guid: 20dba30dc0f584e9386c03d34da24edc,
     type: 3}
+--- !u!114 &-4060179632802508975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732769425497286111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf675871107a4c4b8b8b68ccbd86a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6732769425581684809
 GameObject:
   m_ObjectHideFlags: 0
