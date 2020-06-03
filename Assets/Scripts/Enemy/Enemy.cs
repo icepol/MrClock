@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, IDamage
 {
@@ -69,12 +71,15 @@ public class Enemy : MonoBehaviour, IDamage
     private void OnTriggerEnter2D(Collider2D other)
     {
         Player player = other.GetComponent<Player>();
-        if (player && State != EnemyState.Spawned)
-        {
-            State = EnemyState.AttackPlayer;
-            
-            EventManager.TriggerEvent(Events.PLAYER_UNDER_ATTACK);
-        }
+        if (player)
+            CollisionWithPlayer(player);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        Player player = other.GetComponent<Player>();
+        if (player)
+            CollisionWithPlayer(player);
     }
 
     private void OnDestroy()
@@ -109,6 +114,17 @@ public class Enemy : MonoBehaviour, IDamage
             }
         }
     }
+    
+    void CollisionWithPlayer(Player player)
+    {
+            
+        if (State != EnemyState.Spawned && State != EnemyState.AttackPlayer)
+        {
+            State = EnemyState.AttackPlayer;
+            
+            EventManager.TriggerEvent(Events.PLAYER_UNDER_ATTACK);
+        }
+    }
 
     void Spawned()
     {
@@ -116,9 +132,7 @@ public class Enemy : MonoBehaviour, IDamage
             // once the spawning is finished we can go to next state
             State = EnemyState.LookingForPlayer;
         else
-        {
             IsSpawningFinished = true;
-        }
     }
 
     void LookingForPlayer()
